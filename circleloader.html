@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .dots-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+
+      .dot {
+        height: 20px;
+        width: 20px;
+        margin-right: 10px;
+        border-radius: 10px;
+        background-color: #b3d4fc;
+        animation: pulse 1.5s infinite ease-in-out;
+      }
+
+      .dot:last-child {
+        margin-right: 0;
+      }
+
+      .dot:nth-child(1) {
+        animation-delay: -0.3s;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.5);
+          opacity: 0.5;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+    <script>
+      class Particle {
+        constructor(opt) {
+          this.radius = opt.radius || 7;
+          this.x = opt.x || 0;
+          this.y = opt.y || 0;
+          this.angle = opt.angle || 0;
+          this.speed = opt.speed || 1;
+          this.accel = opt.accel || 0.01;
+          this.decay = opt.decay || 0.01;
+          this.life = opt.life || 1;
+        }
+
+        step() {
+          this.x += Math.cos(this.angle) * this.speed;
+          this.y += Math.sin(this.angle) * this.speed;
+          this.speed += this.accel;
+          this.speed *= (1 - this.decay);
+          this.life -= this.decay;
+          if (this.life <= 0) {
+            return true;
+          }
+          this.draw();
+          return false;
+        }
+
+        draw() {
+          const dot = document.createElement("div");
+          dot.style.left = `${this.x}px`;
+          dot.style.top = `${this.y}px`;
+          dot.style.width = `${this.radius * 2}px`;
+          dot.style.height = `${this.radius * 2}px`;
+          dot.style.borderRadius = `${this.radius}px`;
+          dot.style.backgroundColor = "#b3d4fc";
+          dot.style.position = "absolute";
+          document.body.appendChild(dot);
+          this.element = dot;
+          this.element.style.animationDelay = `${-0.3 + (this.life * 0.3)}s`;
+        }
+      }
+
+      const particles = [];
+
+      for (let i = 0; i < 10; i++) {
+        particles.push(
+          new Particle({
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            angle: Math.random() * Math.PI * 2,
+          })
+        );
+      }
+              const loop = () => {
+          requestAnimationFrame(loop);
+          for (let particle of particles) {
+            if (particle.step()) {
+              document.body.removeChild(particle.element);
+              particles.splice(particles.indexOf(particle), 1);
+              particles.push(
+                new Particle({
+                  x: Math.random() * window.innerWidth,
+                  y: Math.random() * window.innerHeight,
+                  angle: Math.random() * Math.PI * 2,
+                })
+              );
+            }
+          }
+        };
+
+        loop();
+      </script>
+    </body>
+</html>

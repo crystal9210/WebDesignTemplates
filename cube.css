@@ -1,0 +1,300 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #050505;
+  animation: changeColor 30s linear infinite;
+}
+
+@keyframes changeColor {
+  0% {
+    background-color: #f5f0e8;
+  } /* 春: 淡いピンク */
+  10% {
+    background-color: #ffc0cb;
+  } /* 春: 桜色 */
+  20% {
+    background-color: #99d9ea;
+  } /* 夏: 爽やかな水色 */
+  30% {
+    background-color: #77dd77;
+  } /* 夏: 黄緑と緑の間の色 */
+  40% {
+    background-color: #90ee90;
+  } /* 夏: 濃い緑色 */
+  50% {
+    background-color: #90ee90;
+  } /* 夏: 弱い緑色 */
+  60% {
+    background-color: #f9e79f;
+  } /* 秋: 暖かい黄色 */
+  70% {
+    background-color: #f5a623;
+  } /* 秋: 落ち着いたオレンジ */
+  80% {
+    background-color: #f5f5f5;
+  } /* 冬: 銀色っぽい白色 */
+  90% {
+    background-color: #c2e0c2;
+  } /* 春: 柔らかい緑 */
+  100% {
+    background-color: #f5f0e8;
+  } /* 春に戻る */
+}
+.cube {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  transform-style: preserve-3d;
+  transform: rotateX(-30deg);
+  animation: animate 4s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: rotateX(-30deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-30deg) rotateY(360deg);
+  }
+}
+
+.cube div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.cube div span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#151515, #00ec00);
+  transform: rotateY(calc(90deg * var(--i))) translateZ(150px);
+}
+
+.top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background: #222;
+  transform: rotateX(90deg) translateZ(150px);
+}
+
+.top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background: #0f0;
+  transform: translateZ(-400px);
+  filter: blur(20px);
+  box-shadow: 0 0 120px rgba(0, 255, 0, 0.2), 0 0 200px rgba(0, 255, 0, 0.4),
+    0 0 300px rgba(0, 255, 0, 0.6), 0 0 400px rgba(0, 255, 0, 0.8),
+    0 0 500px rgba(0, 255, 0, 1);
+}
+
+/* 2つ目のキューブのcss */
+.cube-2 {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%);
+  animation: animate 4s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: rotateX(-30deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-30deg) rotateY(360deg);
+  }
+}
+
+.cube-2 div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.cube-2 div span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#151515, #f5a623);
+  transform: translate(-50%, -50%);
+  transform: rotateY(calc(90deg * var(--i))) translateZ(50px);
+}
+
+.top-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background: #222;
+  transform: rotateX(90deg) translateZ(50px);
+}
+
+.top-2::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background: #f5a623;
+  transform: translateZ(-133px);
+  filter: blur(20px);
+  box-shadow: 0 0 120px rgba(248, 203, 153, 0.2),
+    0 0 200px rgba(248, 203, 153, 0.4), 0 0 300px rgba(248, 203, 153, 0.6),
+    0 0 400px rgba(248, 203, 153, 0.8), 0 0 500px rgba(248, 203, 153, 1);
+}
+
+/* 3つめのキューブのcss */
+.cube-3 {
+  position: absolute;
+  top: 200px;
+  right: 100px;
+  width: 150px;
+  height: 150px;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%);
+  animation: animate 4s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: rotateX(-30deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-30deg) rotateY(360deg);
+  }
+}
+
+.cube-3 div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.cube-3 div span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#151515, #fff);
+  transform: translate(-50%, -50%);
+  transform: rotateY(calc(90deg * var(--i))) translateZ(75px);
+}
+
+.top-3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background: #222;
+  transform: rotateX(90deg) translateZ(75px);
+}
+
+.top-3::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background: #fff;
+  transform: translateZ(-200px);
+  filter: blur(20px);
+  box-shadow: 0 0 120px rgba(255, 255, 255, 0.2),
+    0 0 200px rgba(255, 255, 255, 0.4), 0 0 300px rgba(255, 255, 255, 0.6),
+    0 0 400px rgba(255, 255, 255, 0.8), 0 0 500px rgba(255, 255, 255, 1);
+}
+
+/* 4つめのキューブのcss */
+.cube-4 {
+  position: absolute;
+  top: 150px;
+  left: 100px;
+  width: 150px;
+  height: 150px;
+  transform-style: preserve-3d;
+  transform: translate(-50%, -50%);
+  animation: animate 4s linear infinite;
+}
+@keyframes animate {
+  0% {
+    transform: rotateX(-30deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(-30deg) rotateY(360deg);
+  }
+}
+
+.cube-4 div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.cube-4 div span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#151515, #2b6cb0);
+  transform: translate(-50%, -50%);
+  transform: rotateY(calc(90deg * var(--i))) translateZ(75px);
+}
+
+.top-4 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background: #222;
+  transform: rotateX(90deg) translateZ(75px);
+}
+
+.top-4::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background: #2b6cb0;
+  transform: translateZ(-200px);
+  filter: blur(20px);
+  box-shadow: 0 0 120px rgba(72, 139, 204, 0.2),
+    0 0 200px rgba(72, 139, 204, 0.4), 0 0 300px rgba(72, 139, 204, 0.6),
+    0 0 400px rgba(72, 139, 204, 0.8), 0 0 500px rgba(72, 139, 204, 1);
+}
